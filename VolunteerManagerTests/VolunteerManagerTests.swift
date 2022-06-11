@@ -40,7 +40,7 @@ class VolunteerManagerTests: XCTestCase {
     }
     
     //adds a volunteer twice, with two different values. Since the person already exists, add it to existing hours.
-    func testAddVolunteerHours() {
+    func testAddVolunteerTwiceHours() {
         var manager = VolunteerManager()
         //creates volunteer named "Steven" with 3 hours
         manager.volunteer("Steven", for: 3)
@@ -51,7 +51,7 @@ class VolunteerManagerTests: XCTestCase {
     }
     
     //adds a volunteer twice, however the sum is over 20, should decrease hours to 20
-    func testAddVolunteerHoursOver20Twice() {
+    func testAddVolunteerHoursOver20T() {
         var manager = VolunteerManager()
         //creates volunteer "Mai" with 10 hours
         manager.volunteer("Mai", for: 10)
@@ -59,5 +59,16 @@ class VolunteerManagerTests: XCTestCase {
         manager.volunteer("Mai", for: 15)
         //limits total hours to 20, so Mai should have 20 hours
         XCTAssertEqual(manager.volunteers["Mai"], 20)
+    }
+    
+    //adds a volunteer and tries to subtract hours
+    func testAddVolunteerWithNegativeHours() {
+        var manager = VolunteerManager()
+        //creates volunteer "Ash" With 10 hours
+        manager.volunteer("Ash", for: 10)
+        //tries to subtract 5 hours from "Ash"
+        manager.volunteer("Ash", for: -5)
+        //it should ignore the -5 and keep the hours the same at 10
+        XCTAssertEqual(manager.volunteers["Ash"], 10)
     }
 }
