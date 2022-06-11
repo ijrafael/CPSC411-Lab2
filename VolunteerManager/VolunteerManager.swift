@@ -14,14 +14,22 @@ struct VolunteerManager {
     private(set) var volunteers: [String:Int] = [:]
     
     mutating func volunteer(_ name: String, for hours: Int) {
-        if let volunteerHours = volunteers[name] {
-            volunteers[name] = volunteerHours
-        } else {
-            volunteers[name] = hours
-        }
-                
-        if let volunteerHours = volunteers[name], volunteerHours > 20 {
-            volunteers[name] = 30
+        
+        //checks to make sure the hours added is more than 0, fixed bug
+        if hours > 0 {
+        
+            if let volunteerHours = volunteers[name] {
+                //added hours, if the volunteer exists, fixed bug
+                volunteers[name] = volunteerHours + hours
+            } else {
+                //if volunteer doesn't already exist just add hours
+                volunteers[name] = hours
+            }
+            
+            //changed the value from 30 to 20, fixed bug
+            if let volunteerHours = volunteers[name], volunteerHours > 20 {
+                volunteers[name] = 20
+            }
         }
     }
         

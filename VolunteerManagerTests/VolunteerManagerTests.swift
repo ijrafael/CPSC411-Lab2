@@ -22,5 +22,42 @@ class VolunteerManagerTests: XCTestCase {
     }
     
     // TODO: Create your unit tests below
- 
+    
+    //adds a person with 0 hours, should not add it to the list
+    func testAddVolunteerWith0() {
+        var manager = VolunteerManager()
+        manager.volunteer("Tim", for: 0)
+        //nil means no volunteer was added
+        XCTAssertEqual(manager.volunteers["Tim"], nil)
+    }
+    
+    //adds a volunteer with more than 20 hours, should set it to 20.
+    func testAddVolunteerOver20() {
+        var manager = VolunteerManager()
+        manager.volunteer("Jess", for: 23)
+        //sets hours to 20 since 23 > 20, 20 is the max hours
+        XCTAssertEqual(manager.volunteers["Jess"], 20)
+    }
+    
+    //adds a volunteer twice, with two different values. Since the person already exists, add it to existing hours.
+    func testAddVolunteerHours() {
+        var manager = VolunteerManager()
+        //creates volunteer named "Steven" with 3 hours
+        manager.volunteer("Steven", for: 3)
+        //adds 5 hours to "Steven"
+        manager.volunteer("Steven", for: 5)
+        //total hours should be 8
+        XCTAssertEqual(manager.volunteers["Steven"], 8)
+    }
+    
+    //adds a volunteer twice, however the sum is over 20, should decrease hours to 20
+    func testAddVolunteerHoursOver20Twice() {
+        var manager = VolunteerManager()
+        //creates volunteer "Mai" with 10 hours
+        manager.volunteer("Mai", for: 10)
+        //adds 15 hours to "Mai"
+        manager.volunteer("Mai", for: 15)
+        //limits total hours to 20, so Mai should have 20 hours
+        XCTAssertEqual(manager.volunteers["Mai"], 20)
+    }
 }
