@@ -24,11 +24,11 @@ class VolunteerManagerTests: XCTestCase {
     // TODO: Create your unit tests below
     
     //adds a person with 0 hours, should not add it to the list
-    func testAddVolunteerWith0() {
+    func testAddVolunteerUnder0() {
         var manager = VolunteerManager()
-        manager.volunteer("Tim", for: 0)
+        manager.volunteer("Tim", for: -1)
         //nil means no volunteer was added
-        XCTAssertEqual(manager.volunteers["Tim"], 0)
+        XCTAssertEqual(manager.volunteers["Tim"], nil)
     }
     
     //adds a volunteer twice, with two different values. Since the person already exists, add it to existing hours.

@@ -16,7 +16,7 @@ struct VolunteerManager {
     mutating func volunteer(_ name: String, for hours: Int) {
         
         //checks to make sure the hours added is more than 0, fixed bug
-        if hours > 0 {
+        if hours >= 0 {
         
             if let volunteerHours = volunteers[name] {
                 //added hours, if the volunteer exists, fixed bug
