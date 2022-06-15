@@ -28,7 +28,7 @@ class VolunteerManagerTests: XCTestCase {
         var manager = VolunteerManager()
         manager.volunteer("Tim", for: 0)
         //nil means no volunteer was added
-        XCTAssertEqual(manager.volunteers["Tim"], nil)
+        XCTAssertEqual(manager.volunteers["Tim"], 0)
     }
     
     //adds a volunteer twice, with two different values. Since the person already exists, add it to existing hours.
