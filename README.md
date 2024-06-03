@@ -1,3 +1,6 @@
+# READ THIS
+This was created in my CPSC411 - Mobile Device Application class. I used this repository for a lab to learn more about Swift programming and developing apps for iOS devices.
+
 # VolunteerManager
 Create a unit test for the VolunteerManager mobile application. Specifically, your unit test will test the VolunteerManager structure.
 
